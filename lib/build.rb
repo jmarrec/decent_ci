@@ -65,12 +65,15 @@ class Build
       end
       $logger.debug("Querying potential build: #{b.name}")
       branch_details = github_query(@client) { @client.branch(@repository, b.name) }
-      skip_message_present = false
+      commit_message = ''
       begin
-        skip_message_present = branch_details.commit.commit.message['[decent_ci_skip]']
+        commit_message = branch_details.commit.commit.message
       rescue
         # Ignored
       end
+      commit_message.downcase!
+      skip_tags = ['[decent_ci_skip]', '[skip ci]', '[ci skip]', '[no ci]']
+      skip_message_present = skip_tags.any? {|w| commit_message.include?(w) }
       next if skip_message_present && branch_details.name != 'develop' # only skip if we have the msg on a non-develop branch
 
       begin
