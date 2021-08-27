@@ -245,9 +245,9 @@ did_any_builds = false
       }
     end
 
-    BRANCH_FILTER = ENV["DECENT_CI_BRANCH_FILTER"] # something like '(develop|master)' for eg
-    PR_BRANCH_FILTER = ENV["DECENT_CI_PR_BRANCH_FILTER"] # The target it points to should match
-    TAG_FILTER = ENV["DECENT_CI_TAG_FILTER"]   # something like 'v.*' or 'v\d.\d.0'
+    BRANCH_FILTER = ENV["DECENT_CI_BRANCH_FILTER"] # something like '(develop|master)' for eg (or just 'develop')
+    PR_BRANCH_FILTER = ENV["DECENT_CI_PR_BRANCH_FILTER"] # The target it points to should match this. eg 'develop'
+    TAG_FILTER = ENV["DECENT_CI_TAG_FILTER"]   # something like 'v.*' or 'v\d.\d.0' if you want to do filtering
     # loop over each potential build
     b.potential_builds.each {|p|
 

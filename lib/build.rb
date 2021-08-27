@@ -130,7 +130,10 @@ class Build
           aging_pull_requests_num_days = pb.configuration.aging_pull_requests_numdays
 
           if p.head.repo.full_name == p.base.repo.full_name
-            $logger.info("Skipping pull-request originating from head repo: #{p.number}")
+            # $logger.info("Skipping pull-request originating from head repo: #{p.number}")
+            $logger.info("Found an internal PR to add to potential_builds: #{p.number}")
+            @potential_builds << pb
+
           else
             $logger.info("Found an external PR to add to potential_builds: #{p.number}")
             @potential_builds << pb
