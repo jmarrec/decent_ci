@@ -34,7 +34,7 @@ class PotentialBuild
   include CustomCheck
   include Runners
 
-  attr_reader :tag_name, :commit_sha, :branch_name, :repository
+  attr_reader :tag_name, :commit_sha, :branch_name, :repository, :pull_request_base_ref
   attr_accessor :test_run, :failure
 
   def initialize(client, token, repository, tag_name, commit_sha, branch_name, author, release_url, release_assets, # rubocop:disable Metrics/ParameterLists
